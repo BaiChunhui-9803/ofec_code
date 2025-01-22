@@ -1,0 +1,11 @@
+[X,Y] = meshgrid(-8:.5:8);
+R = sqrt(X.^2 + Y.^2) + eps;
+Z = sin(R)./R;
+clf;
+conT=300;
+figureId=1;
+f = figure(figureId);
+clf(f);
+contour(X,Y,Z,conT);
+filepath='mesh_filename.png';
+exportgraphics(gcf,filepath);

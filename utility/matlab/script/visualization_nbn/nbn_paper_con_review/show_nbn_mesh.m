@@ -1,0 +1,14 @@
+%readfilepath = "Z:/student/2018/diaoyiya/nbn_experiment/conProNBN_total/"+filename+"_mesh.txt";
+%readfilepath = "Z:/student/2018/diaoyiya/nbn_experiment/ProName_BBOB_F01_Dim_2_mesh.txt";
+readfilepath = "//172.24.24.151/e/DiaoYiya/papre_con_data/review_data/shubert/Proname_Classic_Shubert_dim_2_mesh.txt";
+meshData=  readmatrix(readfilepath);
+x = meshData(:,3)';
+y=meshData(:,4)';
+z= meshData(:,5)';
+sampleSize = size(x);
+div = sqrt(sampleSize(1,2));
+xx= reshape(x,div,div);
+yy = reshape(y,div,div);
+zz = reshape(z,div,div);
+f1 = figure(1);
+contour3(xx,yy,zz,300);

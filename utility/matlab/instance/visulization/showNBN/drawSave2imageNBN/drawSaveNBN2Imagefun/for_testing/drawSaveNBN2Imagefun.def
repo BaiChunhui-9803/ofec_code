@@ -1,0 +1,8 @@
+LIBRARY drawSaveNBN2Imagefun
+EXPORTS
+drawSaveNBN2ImagefunInitialize
+drawSaveNBN2ImagefunInitializeWithHandlers
+drawSaveNBN2ImagefunTerminate
+drawSaveNBN2ImagefunPrintStackTrace
+mlxDrawSaveNBN2Imagefun
+

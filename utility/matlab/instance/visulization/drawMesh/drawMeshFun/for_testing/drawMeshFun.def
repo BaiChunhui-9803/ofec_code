@@ -1,0 +1,8 @@
+LIBRARY drawMeshFun
+EXPORTS
+drawMeshFunInitialize
+drawMeshFunInitializeWithHandlers
+drawMeshFunTerminate
+drawMeshFunPrintStackTrace
+mlxDrawMeshFun
+

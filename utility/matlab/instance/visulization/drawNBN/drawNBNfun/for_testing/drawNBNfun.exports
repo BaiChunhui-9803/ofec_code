@@ -1,0 +1,6 @@
+drawNBNfunInitialize
+drawNBNfunInitializeWithHandlers
+drawNBNfunTerminate
+drawNBNfunPrintStackTrace
+mlxDrawNBNfun
+

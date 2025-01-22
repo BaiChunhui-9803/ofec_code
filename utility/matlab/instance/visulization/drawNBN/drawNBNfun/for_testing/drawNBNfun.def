@@ -1,0 +1,8 @@
+LIBRARY drawNBNfun
+EXPORTS
+drawNBNfunInitialize
+drawNBNfunInitializeWithHandlers
+drawNBNfunTerminate
+drawNBNfunPrintStackTrace
+mlxDrawNBNfun
+

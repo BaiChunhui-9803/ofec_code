@@ -1,0 +1,12 @@
+    fileDir = 'E:/Diao_Yiya/code/NBN_data/testData/test';
+    filename = 'problem_name-COP_CEC2017_F02--number_of_variables-2--algorithm_name-NBN_DSA--add_optimal-1--sample_size-10002.txt';
+    curTime = datetime("now");
+fmt = "yyyy-MM-dd--hh-mm-ss";
+strCurTime = string(curTime,fmt);
+    outputDir = append('E:/Diao_Yiya/code/NBN_visual_data/test/','NBN_visualPic_',strCurTime);
+    mkdir(outputDir);
+    disp(fileDir);
+    disp(filename);
+    figureId= 1;                  
+    Psize = 20;
+    info= showNBNdata(figureId,outputDir,fileDir,filename,Psize);
