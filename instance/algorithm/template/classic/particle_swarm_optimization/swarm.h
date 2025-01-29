@@ -107,7 +107,9 @@ namespace ofec {
 	void Swarm<TParticle>::updateBest(Environment *env) {
 		this->m_best_individual = nullptr;
 		for (auto &ptr : this->m_individuals) {
-			if (!this->m_best_individual || dominate(ptr->pbest(), this->m_best_individual->pbest(), env->problem()->optimizeMode())) {
+			if (!this->m_best_individual ||
+				ptr->pbest().dominate(this->m_best_individual->pbest(), env)
+			) {
 				this->m_best_individual = ptr.get();
 			}
 		}
@@ -117,7 +119,7 @@ namespace ofec {
 	void Swarm<TParticle>::updateWorst(Environment *env) {
 		this->m_worst_individual = nullptr;
 		for (auto &ptr : this->m_individuals) {
-			if (!this->m_worst_individual || dominate(ptr->pbest(), this->m_worst_individual->pbest(), env->problem()->optimizeMode())) {
+			if (!this->m_worst_individual || ptr->pbest().dominate(this->m_worst_individual->pbest(), env)) {
 				this->m_worst_individual = ptr.get();
 			}
 		}
@@ -143,10 +145,10 @@ namespace ofec {
 
 			rf = this->m_individuals[rindex[i]]->evaluate(env);
 
-			if (dominate(*this->m_individuals[rindex[i]], this->m_individuals[rindex[i]]->pbest(), env->problem()->optimizeMode())) {
+			if (this->m_individuals[rindex[i]]->dominate(this->m_individuals[rindex[i]]->pbest(), env)) {
 				this->m_individuals[rindex[i]]->pbest() = *(this->m_individuals[rindex[i]]);
 				this->m_individuals[rindex[i]]->setImproved(true);
-				if (dominate(this->m_individuals[rindex[i]]->pbest(), this->m_best_individual->pbest(), env->problem()->optimizeMode())) {
+				if (this->m_individuals[rindex[i]]->pbest().dominate(this->m_best_individual->pbest(), env)) {
 					m_flag_best_improved = true;
 				}
 			}
@@ -175,7 +177,7 @@ namespace ofec {
 	Solution<>& Swarm<TParticle>::neighborhoodBest(int idx, Environment *env) {
 		int l = idx;
 		for (int i = 0; i < this->m_individuals.size();++i) {
-			if (m_link[idx][i] && dominate(this->m_individuals[i]->pbest(), this->m_individuals[l]->pbest(), env->problem()->optimizeMode())) {
+			if (m_link[idx][i] && this->m_individuals[i]->pbest().dominate( this->m_individuals[l]->pbest(), env)) {
 				l = i;
 			}
 		}

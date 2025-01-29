@@ -253,62 +253,6 @@ namespace ofec {
 
 
 
-			void calculateNBNhnswSingleThread(ofec::Environment* env, ofec::Random* rnd) {
-				auto pro = env->problem();
-				auto& solbases = m_solbases;
-				hnsw::HnswModel hnswModel;
-				hnswModel.initialize(env, rnd, std::thread::hardware_concurrency());
-				std::vector<int> solIds;
-				//	new_datum->m_hnswModel2.setNumberThreads(1);
-				hnswModel.addDataMutliThread(solbases, solIds);
-
-
-				auto& belong = m_belong;
-				auto& dis2parent = m_dis2parent;
-				auto& vFitness = m_vFitness;
-				vFitness.clear();
-
-				for (auto& it : solbases) {
-					vFitness.push_back(it->fitness());
-				}
-
-
-				//for (auto& it : solbases) {
-				//	vFitness.push_back(it->fitness());
-				//}
-
-
-				std::vector<std::vector<int>> model_neighbors(solbases.size());
-				for (int idx(0); idx < solbases.size(); ++idx) {
-					auto& nei = hnswModel.getNeighbors(idx);
-					auto& curnei = model_neighbors[idx];
-					for (auto& neiId : nei.neighbors()) {
-						curnei.push_back(neiId.nodeId());
-					}
-				}
-
-
-
-				//for (int idx(0); idx < solbases.size(); ++idx) {
-				//	auto& nei = model_neighbors[idx][0];
-				//	auto& curnei = neighbors[idx];
-				//	curnei = nei;
-				//}
-
-				{
-					//	std::cout << "begin nbn" << std::endl;
-					//	auto start = std::chrono::system_clock::now();
-					ofec::NBN_NearestBetterCalculator::calculate(solbases, vFitness, model_neighbors,
-						belong, dis2parent,
-						pro, rnd);
-					//		auto end = std::chrono::system_clock::now();
-					//		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-					//		std::cout << "nbn calculate costs"
-					//			<< double(duration.count()) * std::chrono::microseconds::period::num / std::chrono::microseconds::period::den
-					//			<< "seconds" << std::endl;
-				}
-			}
-
 
 			void calculateNBNhnsw(ofec::Environment* env, ofec::Random* rnd) {
 				auto pro = env->problem();
@@ -333,11 +277,6 @@ namespace ofec {
 				}
 
 
-				//for (auto& it : solbases) {
-				//	vFitness.push_back(it->fitness());
-				//}
-
-
 				std::vector<std::vector<int>> model_neighbors(solbases.size());
 				for (int idx(0); idx < solbases.size(); ++idx) {
 					auto& nei = hnswModel.getNeighbors(idx);
@@ -361,11 +300,6 @@ namespace ofec {
 					ofec::NBN_NearestBetterCalculator::calculate(solbases, vFitness, model_neighbors,
 						belong, dis2parent,
 						pro, rnd);
-					//		auto end = std::chrono::system_clock::now();
-					//		auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
-					//		std::cout << "nbn calculate costs"
-					//			<< double(duration.count()) * std::chrono::microseconds::period::num / std::chrono::microseconds::period::den
-					//			<< "seconds" << std::endl;
 				}
 			}
 

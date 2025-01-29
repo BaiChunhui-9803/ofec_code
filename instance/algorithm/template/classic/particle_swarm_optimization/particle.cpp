@@ -89,7 +89,7 @@ namespace ofec {
 	}
 
 	void Particle::updatePBest(Environment *env) {
-		if (dominate(*this, m_pbest, env->problem()->optimizeMode())) {
+		if(this->dominate(m_pbest,env)) {
 			m_pbest = *this;
 			m_improved = true;
 		}

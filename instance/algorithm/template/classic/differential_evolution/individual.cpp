@@ -132,7 +132,7 @@ namespace ofec {
 
 	int IndividualDE::select(Environment *env) {
 		int tag = m_pu.evaluate(env);
-		if (dominate(m_pu, *this, env->problem()->optimizeMode())) {
+		if(m_pu.dominate(*this,env)){
 			variable() = m_pu.variable();
 			m_objectives = m_pu.objective();
 			m_constraints = m_pu.constraint();

@@ -1,0 +1,61 @@
+#ifndef OFEC_CUSTOM_METHOD_HPP
+#define OFEC_CUSTOM_METHOD_HPP
+
+#include "../core/global.h"
+#include "interface.h"
+#include "../instance/problem/continuous/single_objective/global/cec2005/f1_shifted_sphere.h"
+#include "../instance/algorithm/continuous/single_objective/global/canonical_de/canonical_de.h"
+
+namespace ofec {
+	void run(int argc, char* argv[]) {
+		// the path to data
+		//ofec::g_working_directory = "...";
+
+		/* generate instances by identifier */
+		{
+			std::shared_ptr<Environment> env(Environment::create());
+			env->recordInputParameters();
+			env->initialize();
+
+			env->setProblem(GOP_CEC2005_F01::create());
+			env->problem()->inputParameters().at("number of variables")->setValue("2");
+			env->problem()->recordInputParameters();
+			env->initializeProblem();
+
+			env->setAlgorithm(CanonicalDE::create());
+			env->algorithm()->inputParameters().at("population size")->setValue("10");
+			env->algorithm()->inputParameters().at("maximum evaluations")->setValue("10000");
+			env->algorithm()->recordInputParameters();
+			env->initializeAlgorithm(0.5);
+			env->runAlgorithm();
+		}
+
+		/* generate instances by name */
+		{
+			registerInstance();
+
+			std::string environment_problem_name = "GOP_CEC2005_F01";
+
+			std::shared_ptr<Environment> env(generateEnvironmentByFactory(environment_problem_name));
+			env->recordInputParameters();
+			env->initialize();
+
+			env->setProblem(generateProblemByFactory(environment_problem_name));
+			env->problem()->inputParameters().at("number of variables")->setValue("2");
+			env->problem()->recordInputParameters();
+			env->initializeProblem();
+
+			std::string algorithm_name = "Canonical-DE";
+			if (checkValidation(environment_problem_name, algorithm_name)) {
+				env->setAlgorithm(generateAlgorithmByFactory(algorithm_name));
+				env->algorithm()->inputParameters().at("population size")->setValue("10");
+				env->algorithm()->inputParameters().at("maximum evaluations")->setValue("10000");
+				env->algorithm()->recordInputParameters();
+				env->initializeAlgorithm(0.5);
+				env->runAlgorithm();
+			}
+		}
+	}
+}
+
+#endif // !OFEC_CUSTOM_METHOD_HPP

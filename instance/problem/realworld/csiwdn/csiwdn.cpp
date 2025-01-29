@@ -89,6 +89,7 @@ namespace ofec {
 
 		//ms_mutex_epanet.lock();
 		initializeEPANET(m_epanet); //的到水力信息
+		getEPANETinfo();
 		readLocation();  //读取各节点坐标
 		getCitByEPANET(m_epanet,m_real_PS_read, m_Ciobs);
 		//ms_mutex_epanet.unlock();
