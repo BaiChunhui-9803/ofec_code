@@ -40,9 +40,45 @@ namespace ofec {
 			m_map.erase(name);
 		}
 		InputParameter* at(const std::string &name) const;
+
+		/**
+ 		 * @brief_byBCH Input parameters from a ParameterMap into the internal parameter mapping.
+ 		 *
+ 		 * This function iterates through the provided ParameterMap and updates the internal parameter
+ 		 * mapping (m_map) with the values from the input map if the keys exist.
+ 		 *
+ 		 * @param parameters The input ParameterMap containing parameter names and their values.
+ 		 */
 		void input(const ParameterMap &parameters) const;
+
+		/**
+ 		 * @brief_byBCH Input parameters from a std::map<std::string, std::string> into the internal parameter mapping.
+ 		 *
+ 		 * This function iterates through the provided std::map<std::string, std::string> and updates the internal
+ 		 * parameter mapping (m_map) with the values from the input map if the keys exist.
+ 		 *
+ 		 * @param parameters The input map containing parameter names and their string values.
+ 		 */
 		void input(const std::map<std::string, std::string> &parameters) const;
+
+		/**
+ 		 * @brief_byBCH Output parameters from the internal parameter mapping into a ParameterMap.
+ 		 *
+ 		 * This function iterates through the internal parameter mapping (m_map) and retrieves the parameter
+ 		 * values using the getVariantValue method, storing them in the provided ParameterMap.
+ 		 *
+ 		 * @param parameters The output ParameterMap to store the parameter names and their values.
+ 		 */
 		void output(ParameterMap &parameters) const;
+
+		/**
+ 		 * @brief_byBCH Output parameters from the internal parameter mapping into a std::map<std::string, std::string>.
+ 		 *
+ 		 * This function iterates through the internal parameter mapping (m_map) and retrieves the parameter
+ 		 * values using the getValue method, storing them in the provided std::map<std::string, std::string>.
+ 		 *
+ 		 * @param parameters The output map to store the parameter names and their string values.
+ 		 */
 		void output(std::map<std::string, std::string> &parameters) const;
 		void checkValue() const;
 
