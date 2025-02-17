@@ -75,6 +75,7 @@ struct Configuration {
 };
 
 namespace ofec {
+
     void run(int argc, char *argv[]);
 }
 

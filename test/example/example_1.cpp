@@ -11,7 +11,6 @@
 #include "../../instance/algorithm/continuous/single_objective/global/canonical_de/canonical_de.h"
 #include "../../instance/algorithm/combination/eax_tsp/eax_tsp_origin/eax_tsp_alg.h"
 
-
 namespace ofec {
 
     void print_(const std::list<std::pair<ParameterVariant, int>>& param_stream) {
