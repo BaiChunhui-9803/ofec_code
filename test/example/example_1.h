@@ -11,6 +11,7 @@
 struct ProblemConfig {
     std::string name;
     std::map<std::string, std::string> parameters;
+    ofec::Real seed = 0;
 
     void print() const {
         std::cout << "Problem: " << name << std::endl;
@@ -24,6 +25,7 @@ struct ProblemConfig {
 struct AlgorithmConfig {
     std::string name;
     std::map<std::string, std::string> parameters;
+    ofec::Real seed;
 
     void print() const {
         std::cout << "Algorithm: " << name << std::endl;
@@ -35,23 +37,40 @@ struct AlgorithmConfig {
 };
 
 struct Configuration {
-    std::vector<ProblemConfig> problems;
-    AlgorithmConfig algorithm;
+    std::vector<ProblemConfig> problemVec;
+    std::vector<AlgorithmConfig> algorithmVec;
+    std::map<std::string, ProblemConfig> problemMap;
+    std::map<std::string, AlgorithmConfig> algorithmMap;
 
-    Configuration(std::vector<ProblemConfig> problems, AlgorithmConfig algorithm)
-        : problems(std::move(problems)), algorithm(std::move(algorithm)) {}
+
+    Configuration(std::vector<ProblemConfig> problems, std::vector<AlgorithmConfig> algorithms)
+        : problemVec(std::move(problems)), algorithmVec(std::move(algorithms)) {
+        for (auto& problem : problemVec) {
+            problemMap[problem.name] = problem;
+        }
+        for (auto& algorithm : algorithmVec) {
+            algorithmMap[algorithm.name] = algorithm;
+        }
+    }
 
     void print() const {
         std::cout << "Configuration:" << std::endl;
-        for (const auto& problem : problems) {
+        for (const auto& problem : problemVec) {
             problem.print();
             std::cout << std::endl;
         }
-        algorithm.print();
+        for (const auto& algorithm : algorithmVec) {
+            algorithm.print();
+            std::cout << std::endl;
+        }
     }
 
     size_t getProblemCount() const {
-        return problems.size();
+        return problemVec.size();
+    }
+
+    size_t getAlgorithmCount() const {
+        return algorithmVec.size();
     }
 };
 
