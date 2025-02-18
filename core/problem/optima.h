@@ -42,6 +42,19 @@ namespace ofec {
         virtual const SolutionBase& solutionBase(size_t i) const = 0;
 
         virtual bool isObjectiveGiven() const { return !m_objectives.empty(); }
+
+        /**
+         * @brief_BCH Returns the number of optima with known objective values.
+         *
+         * This method returns the number of optima for which the objective values are known.
+         *
+         * It is recommended to read this function in conjunction with Optima::numberSolutions() to
+         * understand the complete information about the number of optima.
+         *
+         * @return size_t The number of optima.
+         *
+         * @see Optima::numberSolutions()
+         */
         virtual size_t numberObjectives() const { return m_objectives.size(); }
         virtual const std::vector<Real>& objective(size_t i) const { return m_objectives[i]; }
 
@@ -78,19 +91,34 @@ namespace ofec {
         Optima& operator=(Optima &&rhs) noexcept = default;
 
         bool isSolutionGiven() const override { return !m_solutions.empty(); }
+
+        /**
+         * @brief_BCH Returns the number of optima with known solutions (both objective values and variables).
+         *
+         * This method returns the number of optima for which both objective values and variables are known.
+         *
+         * It is recommended to read this function in conjunction with OptimaBase::numberObjectives() to
+         * understand the complete information about the number of optima.
+         *
+         * @return size_t The number of optima.
+         *
+         * @see OptimaBase::numberObjectives()
+         */
         size_t numberSolutions() const override { return m_solutions.size(); }
+
         const SolutionBase& solutionBase(size_t i) const override { return m_solutions[i]; }
 
         Solution<TVariable>& solution(size_t i) { return m_solutions[i]; }
         const Solution<TVariable>& solution(size_t i) const { return m_solutions[i]; }
-        void appendSolution(const Solution<TVariable> &s) { m_solutions.emplace_back(s); }
+        void appendSolution(const Solution<TVariable> &s) {
+            m_solutions.emplace_back(s);
+            m_objectives.push_back(s.objective());
+        }
 
         bool isObjectiveGiven() const override {
             return !m_solutions.empty() || OptimaBase::isObjectiveGiven();
         }
-        size_t numberObjectives() const override {
-            return m_solutions.empty() ? OptimaBase::numberObjectives() : m_solutions.size();
-        }
+
         const std::vector<Real>& objective(size_t i) const override {
             return m_solutions.empty() ? OptimaBase::objective(i) : m_solutions[i].objective();
         }
