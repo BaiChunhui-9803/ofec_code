@@ -37,7 +37,7 @@ namespace ofec {
 		void setRandom(const std::shared_ptr<Random>& random) { m_random = random; }
 
 		/**
-		 * @brief_bch Records the input parameters into the archived parameters.
+		 * @brief_byBCH Records the input parameters into the archived parameters.
 		 *
 		 * This function records the current input parameters of the instance into the archived parameters.
 		 * It first checks the validity of the input parameters and then outputs them to the archived parameters.
@@ -45,7 +45,7 @@ namespace ofec {
 		void recordInputParameters();
 
 		/**
-		 * @brief_bch Restores the input parameters from the archived parameters.
+		 * @brief_byBCH Restores the input parameters from the archived parameters.
 		 *
 		 * This function restores the input parameters of the instance from the archived parameters.
 		 * It reads the parameters from the archived parameters and restores them to the input parameters.
