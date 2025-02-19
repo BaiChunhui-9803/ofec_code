@@ -30,7 +30,7 @@
 
 namespace  ofec {
 	class Environment : public EnableSharedPtr<Environment>, public Instance {
-		OFEC_CONCRETE_INSTANCE(Environment)
+		OFEC_ABSTRACT_INSTANCE(Environment)
 	protected:
 		std::unique_ptr<Problem> m_problem = nullptr;
 		std::unique_ptr<Algorithm> m_algorithm = nullptr;
