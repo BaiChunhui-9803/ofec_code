@@ -44,7 +44,7 @@ namespace ofec {
         virtual bool isObjectiveGiven() const { return !m_objectives.empty(); }
 
         /**
-         * @brief_BCH Returns the number of optima with known objective values.
+         * @brief_byBCH Returns the number of optima with known objective values.
          *
          * This method returns the number of optima for which the objective values are known.
          *
@@ -93,7 +93,7 @@ namespace ofec {
         bool isSolutionGiven() const override { return !m_solutions.empty(); }
 
         /**
-         * @brief_BCH Returns the number of optima with known solutions (both objective values and variables).
+         * @brief_byBCH Returns the number of optima with known solutions (both objective values and variables).
          *
          * This method returns the number of optima for which both objective values and variables are known.
          *
