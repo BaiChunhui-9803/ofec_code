@@ -1,6 +1,18 @@
-//
-// Created by Administrator on 25-2-14.
-//
+/*************************************************************************
+* Project:Open Frameworks for Evolutionary Computation (OFEC)
+*************************************************************************
+* Author: Changhe Li
+* Email: changhe.lw@gmail.com
+* Language: C++
+*************************************************************************
+*  This file is part of OFEC. This library is free software;
+*  you can redistribute it and/or modify it under the terms of the
+*  GNU General Public License as published by the Free Software
+*  Foundation; either version 2, or (at your option) any later version.
+******************************************************************************************
+*  Paper:
+*******************************************************************************************/
+
 
 #ifndef EXAMPLE_1_H
 #define EXAMPLE_1_H
@@ -76,7 +88,7 @@ struct Configuration {
 
 namespace ofec {
 
-    void run(int argc, char *argv[]);
+    void run_example_1(int argc, char *argv[]);
 }
 
 #endif //EXAMPLE_1_H

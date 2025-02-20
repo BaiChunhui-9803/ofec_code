@@ -10,6 +10,10 @@
 #ifdef OFEC_PYTHON
 #include "../utility/python/python_caller.h"
 #endif // OFEC_PYTHON
+#include "../test/example/example_1.h"
+#include "../test/example/example_2.h"
+
+#define OFEC_EXAMPLE_1
 
 int main(int argc, char* argv[]) {
 
@@ -24,6 +28,10 @@ int main(int argc, char* argv[]) {
 	time(&timer_start);
 #ifdef OFEC_UNIT_TEST
 	int result = Catch::Session().run(argc, argv);
+#elifdef OFEC_EXAMPLE_1
+	ofec::run_example_1(argc, argv);
+#elifdef OFEC_EXAMPLE_2
+	ofec::run_example_2(argc, argv);
 #else
 	ofec::run(argc, argv);
 #endif

@@ -16,11 +16,11 @@ namespace ofec {
 	
 			std::ostringstream oss1;
 			oss1 << static_cast<std::string>(g_working_directory);
-			oss1 << "/instance/problem/combination/travelling_salesman/";
+			oss1 << "/instance/problem/combination/travelling_salesman_origin/";
 		//	m_file_path = oss1.str();
-		
+
 		m_input_parameters.add("dataFile1", new FileName(m_file_name,
-			"instance/problem/combination/travelling_salesman",
+			"instance/problem/combination/travelling_salesman_origin",
 			"map (*.tsp)", "A280.tsp"));
 
 		m_input_parameters.add("dataDirectory", new DirectoryName(m_file_path, oss1.str()));

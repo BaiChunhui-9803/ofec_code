@@ -25,7 +25,7 @@
 #include "../../../../core/environment/environment.h"
 
 namespace ofec {
-#define CAST_GAMEENVIRONMENT(pro) dynamic_cast<GameEnvironment*>(pro)
+#define CAST_GAMEENVIRONMENT(env) dynamic_cast<GameEnvironment*>(env)
 
     class GameEnvironment : virtual public Environment {
         OFEC_CONCRETE_INSTANCE(GameEnvironment)

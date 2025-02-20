@@ -1,6 +1,18 @@
-//
-// Created by Administrator on 25-2-14.
-//
+/*************************************************************************
+* Project:Open Frameworks for Evolutionary Computation (OFEC)
+*************************************************************************
+* Author: Changhe Li
+* Email: changhe.lw@gmail.com
+* Language: C++
+*************************************************************************
+*  This file is part of OFEC. This library is free software;
+*  you can redistribute it and/or modify it under the terms of the
+*  GNU General Public License as published by the Free Software
+*  Foundation; either version 2, or (at your option) any later version.
+******************************************************************************************
+*  Paper:
+*******************************************************************************************/
+
 
 #include "example_1.h"
 
@@ -81,7 +93,7 @@ namespace ofec {
         // ofec::variants_stream::outputToFile(paramsStream, "test_2.txt");
     }
 
-    void run(int argc, char *argv[]) {
+    void run_example_1(int argc, char *argv[]) {
         ofec::g_working_directory = "/data/Share/Student/2018/DiaoYiya/ofec_data";
         std::string dir2 = ofec::g_working_directory + "/instance/problem/combination/travelling_salesman_origin/";
 

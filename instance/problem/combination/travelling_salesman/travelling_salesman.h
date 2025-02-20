@@ -273,7 +273,8 @@ namespace ofec {
 
 		void addInputParameters();
 
-	}; 
+	};
+	using TSP = TravellingSalesman;
 
 	int selectCityRandom(std::vector<std::vector<int>>& matrix, std::vector<int>& visited, int num, int row, Random *rnd);
 	int selectCityRandom(std::vector<int> visited, int dim, Random *rnd);
